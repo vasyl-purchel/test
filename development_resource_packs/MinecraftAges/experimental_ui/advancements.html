@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <div id="_body_" class="screenBox">
+            <div class="GameMessage">
+                <p>Advancements will go here</p>
+                <div id="advancement_slot_0" class="advancement_frame" style="background-image:url('First_Advancement.png')"></div>
+                <button id="_close_">Done</button>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        let scriptEngineHandle = null;
+        engine.on("facet:updated:core.scripting", function (scriptEngine) {
+            scriptEngineHandle = scriptEngine;
+        });
+
+        engine.trigger("facet:request", ["core.scripting"]);
+
+        let doneButton = document.getElementById("_close_");
+        doneButton.addEventListener("click", function () {
+            scriptEngineHandle.triggerEvent("agesminecraft:closeAdvancements");
+        });
+    </script>
+</html>
